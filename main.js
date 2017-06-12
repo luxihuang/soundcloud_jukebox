@@ -1,8 +1,9 @@
 var JukeBox = {
-	Var songs = ['./bunny.mp4', './lava.mp4', './partly_cloudy.mp4' ];
-	Var activeSong = null; //this will be the song object later
+	songs:[],
+	// activeSong: activeSong, //this will be the song object later
 
 	init: function(){
+		//this.video = document.getElementById("js-Video"),
 		this.playButton = document.getElementById("js-playButton"),
 		this.stopButton = document.getElementById("js-stopButton"),
 		this.nextButton = document.getElementById("js-nextButton"),
@@ -16,18 +17,18 @@ var JukeBox = {
 		this.muteButton.addEventListener("click", this.mute.bind(this));
 		},
 
-	songs.push(this); //push that adds something to array
+	//songs.push(this); //push that adds something to array
 
 	play: function(song){
 		console.log("JukeBox is playing"); //wire up the button
-		this.activeSong = song;
+		//video.play();
 		},
 	
 	stop: function(){
 		console.log("JukeBox is stoping");
 		},
 
-	next: function(){
+	next: function(){ //should stop the activesong and grab the next song in the array 
 		console.log("JukeBox is skipping to the next song");
 		},
 
@@ -57,3 +58,9 @@ document.addEventListener("DOMContentLoaded", function(){
   // Handler when the DOM is fully loaded
   JukeBox.init();
 });
+
+
+// not incldued
+// progress bar
+// list of videos
+// sound up and down , mute
