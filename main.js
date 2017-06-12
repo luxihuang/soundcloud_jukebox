@@ -1,5 +1,5 @@
 var JukeBox = {
-	songs:[],
+	songs:['bunny.mp4', 'partly_cloudly.mp4', 'lava.mp4'], //console keeps on yelling at my syntax. this an array of mp4s, 1 as activeSong, 1 for previous, 1 for next
 	// activeSong: activeSong, //this will be the song object later
 
 	init: function(){
