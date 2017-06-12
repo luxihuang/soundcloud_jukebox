@@ -1,60 +1,59 @@
 var JukeBox = {
-	songs = [];
-	activeSong: null; //this will be the song object later
-	dom: {};
-
+	Var songs = ['./bunny.mp4', './lava.mp4', './partly_cloudy.mp4' ];
+	Var activeSong = null; //this will be the song object later
 
 	init: function(){
-		var play = document.getElementById("js-playButton"),
-		var stop = document.getElementById("js-stopButton"),
-		var next: document.getElementById("js-nextButton"),
-		var previous: document.getElementById("js-previousButton"),
-			}
-		this.bind(); //calling the bind function
-		}
+		this.playButton = document.getElementById("js-playButton"),
+		this.stopButton = document.getElementById("js-stopButton"),
+		this.nextButton = document.getElementById("js-nextButton"),
+		this.previousButton = document.getElementById("js-previousButton"),
+		this.muteButton = document.getElementById("js-muteButton"),
+	
+		this.playButton.addEventListener("click", this.play.bind(this)); //calling the play function below
+		this.stopButton.addEventListener("click", this.stop.bind(this));
+		this.nextButton.addEventListener("click", this.next.bind(this));
+		this.previousButton.addEventListener("click", this.previous.bind(this));
+		this.muteButton.addEventListener("click", this.mute.bind(this));
+		},
 
-	bind: function(){
-		this.dom.play.addEventListener("click", this.play);
-		this.dom.stop.addEventListener("click", this.stop);
-		this.dom.next.addEventListener("click", this.next);
-		this.dom.mute.addEventListener("click", function(){
-			this.setVolumne(0);
-		}
-	}
+	songs.push(this); //push that adds something to array
 
 	play: function(song){
-		console.log("Jukebox is playing");
+		console.log("JukeBox is playing"); //wire up the button
 		this.activeSong = song;
-	}
-
-	pause: function(){
-		console.log("Jukebox is pausing");
-	}
-
+		},
+	
 	stop: function(){
-		console.log("Jukebox is stoping");
-	}
-
-	change: function(song){
-		console.log("Jukebox is changing");
-	}
+		console.log("JukeBox is stoping");
+		},
 
 	next: function(){
-		console.log("Jukebox is skipping to the next song");
-	}
+		console.log("JukeBox is skipping to the next song");
+		},
+
+	previous: function(){
+		console.log("JukeBox is going back to previous song");
+		},
 
 	shuffle: function(){
-		console.log("Jukebox is shuffling");
+		console.log("JukeBox is shuffling");
+		},
+
+	mute: function(){
+		console.log("JukeBox is muted");
+		},
 	}
 
-//volume should be a $ number
-	setVolume: function(volumeLevel){
-		console.log("volumne level is this");
+//song object
+class Song {
+	constructor(file){
+		this.file = file;
 	}
 }
 
-//once document is ready, call Jukebox init function
+
+//once document is ready, call JukeBox init function
 document.addEventListener("DOMContentLoaded", function(){
   // Handler when the DOM is fully loaded
-  Jukebox.init();
+  JukeBox.init();
 });
