@@ -1,66 +1,74 @@
 var JukeBox = {
-	songs:['bunny.mp4', 'partly_cloudly.mp4', 'lava.mp4'], //console keeps on yelling at my syntax. this an array of mp4s, 1 as activeSong, 1 for previous, 1 for next
-	// activeSong: activeSong, //this will be the song object later
+    songs:['bunny.mp4', 'partly_cloudly.mp4', 'lava.mp4'],
+    currentSongId: 0,
+    previousTime: 0,
 
-	init: function(){
-		//this.video = document.getElementById("js-Video"),
-		this.playButton = document.getElementById("js-playButton"),
-		this.stopButton = document.getElementById("js-stopButton"),
-		this.nextButton = document.getElementById("js-nextButton"),
-		this.previousButton = document.getElementById("js-previousButton"),
-		this.muteButton = document.getElementById("js-muteButton"),
-	
-		this.playButton.addEventListener("click", this.play.bind(this)); //calling the play function below
-		this.stopButton.addEventListener("click", this.stop.bind(this));
-		this.nextButton.addEventListener("click", this.next.bind(this));
-		this.previousButton.addEventListener("click", this.previous.bind(this));
-		this.muteButton.addEventListener("click", this.mute.bind(this));
-		},
+    init: function() {
+        var _this = this;  //making the object available to the methods
+        this.video = document.getElementById("js-Video");
+        this.playButton = document.getElementById("js-playButton");
+        this.stopButton = document.getElementById("js-stopButton");
+        this.nextButton = document.getElementById("js-nextButton");
+        this.previousButton = document.getElementById("js-previousButton");
+   
+        this.playButton.addEventListener("click", function() {
+            _this.load(_this.currentSongId);
+            _this.play();
+        });  
 
-	//songs.push(this); //push that adds something to array
+        this.stopButton.addEventListener("click", function() {
+            _this.stop(_this.currentSongId);
+        });
+        
+        this.nextButton.addEventListener("click", function() {
+            _this.next(_this.currentSongId);
+        });
 
-	play: function(song){
-		console.log("JukeBox is playing"); //wire up the button
-		//video.play();
-		},
-	
-	stop: function(){
-		console.log("JukeBox is stoping");
-		},
+        this.previousButton.addEventListener("click", function() {
+             _this.previous(_this.currentSongId);
+        }); 
+    },
 
-	next: function(){ //should stop the activesong and grab the next song in the array 
-		console.log("JukeBox is skipping to the next song");
-		},
+    load: function(id) { 
+        this.video.src = this.songs[id];
+        this.video.load();
+    },
 
-	previous: function(){
-		console.log("JukeBox is going back to previous song");
-		},
+    play: function() {
+        this.video.play();
+        this.video.currentTime = this.previousTime || 0;
+    },
+  
+    stop: function() {
+        this.previousTime = this.video.currentTime;
+        this.video.pause();
+    },
+ 
+    next: function() {     
+        if(this.currentSongId + 1 >= this.songs.length) {          
+            this.currentSongId = 0;
+        } else {
+            this.currentSongId = this.currentSongId + 1;
+        }
+        this.load(this.currentSongId);
+        this.play();
+    },  
 
-	shuffle: function(){
-		console.log("JukeBox is shuffling");
-		},
-
-	mute: function(){
-		console.log("JukeBox is muted");
-		},
-	}
-
-//song object
-class Song {
-	constructor(file){
-		this.file = file;
-	}
+    previous: function() {
+        if(this.currentSongId <= 0) {
+            this.currentSongId = 0;
+        } else{
+            this.currentSongId = this.currentSongId - 1;
+    }
 }
 
-
-//once document is ready, call JukeBox init function
+//once document is ready, call JukeBox init function. Handler when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function(){
-  // Handler when the DOM is fully loaded
-  JukeBox.init();
+    JukeBox.init();
 });
-
 
 // not incldued
 // progress bar
 // list of videos
 // sound up and down , mute
+// when you stop the video then play again, the video flashes because it's going all the way back to the currentTime = 0
