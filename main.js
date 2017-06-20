@@ -57,13 +57,14 @@ var JukeBox = {
     previous: function() {
         if(this.currentSongId <= 0) {
             this.currentSongId = 0;
-        } else{
+        } else {
             this.currentSongId = this.currentSongId - 1;
+        }
     }
 }
 
 //once document is ready, call JukeBox init function. Handler when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
     JukeBox.init();
 });
 
