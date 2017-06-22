@@ -7,24 +7,28 @@
 		<title>Jukebox Starter Kit</title>
 		<link rel = "stylesheet" type = "text/css" href=./reset.css>
 		<link rel = "stylesheet" type = "text/css" href=./main.css>
+		<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
 	</head>
 	<body>
-		<div class="jukebox">
-			<div class="container">
-				<h1>Jukebox Starter Kit</h1>
-		 		
-		 		<video id="js-Video" width="100%">
+		<div class="container">
+			<h1>Jukebox Using SoundCloud API</h1>
+			<div class="search">
+				<input id="js-search-input" type="text" name="search" placeholder="Search for a song...">
+			</div>
+
+			<div class="JukeBox">
+			 	<video id="js-Video" width="80%">
 					<source src="bunny.mp4" type="video/mp4">
 					<source src="bummy.ogg" type="video/ogg">
-	 			</video>
+		 		</video>
 
-		 		<div class = "jukebox_buttons">
-		 			<button id="js-previousButton">Previous</button>
-			 		<button id="js-playButton">Play</button>
-			 		<button id="js-stopButton">Stop</button>
-			 		<button id="js-nextButton">Next</button>
-			 	</div>
-	 		</div>
+			 	<div class = "JukeBox_buttons">
+			 		<button id="js-previousButton">Previous</button>
+				 	<button id="js-playButton">Play</button>
+				 	<button id="js-stopButton">Stop</button>
+				 	<button id="js-nextButton">Next</button>
+				 </div>
+			</div>
 		</div>
 		<script src="./main.js"></script>
 	</body>
