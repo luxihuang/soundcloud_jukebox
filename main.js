@@ -75,13 +75,14 @@ var JukeBox = {
     },
  
     next: function() {     
-        if(this.currentSongId + 1 >= this.songs.length) {          
+        console.log("B4",this.currentSongId); 
+        if(this.currentSongId >= this.songs.length) {          
             this.currentSongId = 0;
         } else {
             this.currentSongId = this.currentSongId + 1;
         }
-        console.log(currentSongId); 
-        this.player.play(); //same as JukeBox.play()
+        console.log("After",this.currentSongId); 
+        this.play(this.songs[this.currentSongId]); //same as JukeBox.play()
     },  
 
     // previous: function() {
